@@ -1,16 +1,22 @@
 import React from "react"
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native"
 import { connect } from "react-redux"
 
 const TestNavi = ({ navigation, state, setname }) => {
   console.log(state)
+  const [text, setText] = React.useState("")
   return (
     <View style={styles.container}>
       <Text>TestNavi</Text>
+      <TextInput
+        value={text}
+        onChangeText={setText}
+        style={styles.input}
+      ></TextInput>
       <Pressable
         onPress={() => {
           navigation.navigate("Counter")
-          setname("TestNavi")
+          setname(text)
         }}
         style={styles.btn}
       >
@@ -41,5 +47,10 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
+  },
+  input: {
+    height: 40,
+    width: "90%",
+    borderWidth: 1,
   },
 })
